@@ -3,7 +3,7 @@ server {
     listen 80 default;
     
     root /home/data/www;
-    index index.html index.htm index:Q!.php;
+    index index.html index.htm index.php;
 
     location / {
         root /home/data/www;
@@ -19,7 +19,7 @@ server {
 
     location ~ \.php$ {
         include fastcgi_params;
-        fastcgi_pass php:9000;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
     }
 
