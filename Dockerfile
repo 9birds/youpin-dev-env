@@ -24,3 +24,30 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
+COPY nginx.list /etc/apt/sources.list.d/nginx.list
+COPY nginx_signing.key /root/nginx_signing.key
+COPY home /home
+VOLUME /home/data
+
+
+RUN apt-key add /root/nginx_signing.key
+RUN apt-get update
+RUN DEBIAN_FRONTEND="noninteractive"
+RUN apt-get install -y nginx
+
+#RUN rm -rf /var/lib/apt/lists/*
+
+
+#RUN apt-get update
+
+#RUN apt-get install -y nginx
+
+COPY nginx.conf /etc/nginx/
+
+
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+
