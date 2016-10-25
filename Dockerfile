@@ -36,7 +36,9 @@ RUN apt-get update \
         apt-get install -y php7.0-fpm \
         php7.0-cli \
         php7.0-gd \ 
-        php7.0-curl \        
+        php7.0-curl \
+        php7.0-mbstring \
+        php7.0-mysql \       
     && rm -rf /var/lib/apt/lists/*
 
 COPY nginx.conf /etc/nginx/
