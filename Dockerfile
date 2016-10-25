@@ -16,8 +16,7 @@ COPY nginx/nginx.list /etc/apt/sources.list.d/nginx.list
 COPY nginx/nginx_signing.key /root/nginx_signing.key
 
 # Install packages
-RUN apt-key add /root/nginx_signing.key \
-    && apt-get update \
+RUN apt-get update \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y \
         python-software-properties \
@@ -29,6 +28,8 @@ RUN apt-key add /root/nginx_signing.key \
         libsqlite3-0 \
         libxml2 \
         --no-install-recommends \
+    && apt-key add /root/nginx_signing.key \
+    && apt-get update \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y nginx \
         --no-install-recommends \
