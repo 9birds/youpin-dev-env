@@ -23,15 +23,23 @@ RUN apt-get update \
         --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-
 COPY nginx.list /etc/apt/sources.list.d/nginx.list
 COPY nginx_signing.key /root/nginx_signing.key
 COPY home /home
 VOLUME /home/data
 
 
-RUN apt-key add /root/nginx_signing.key
+
+#COPY php.list /etc/apt/sources.list.d/php.list
+
+
+
+
+
+
+
 RUN apt-get update
+RUN apt-key add /root/nginx_signing.key
 RUN DEBIAN_FRONTEND="noninteractive"
 RUN apt-get install -y nginx
 
@@ -39,14 +47,23 @@ RUN apt-get install -y nginx
 
 
 #RUN apt-get update
-
 #RUN apt-get install -y nginx
 
 COPY nginx.conf /etc/nginx/
 
 
-EXPOSE 80 443
+
+
+EXPOSE 80 443 9000
 CMD ["nginx", "-g", "daemon off;"]
+CMD ["php-fpm"]
+
+
+
+
+
+
+
 
 
 
