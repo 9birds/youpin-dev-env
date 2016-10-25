@@ -20,8 +20,6 @@ RUN apt-key add /root/nginx_signing.key \
     && apt-get update \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y \
-        python-software-properties \
-        software-properties-common \
         ca-certificates \
         curl \
         libpcre3 \
@@ -44,5 +42,9 @@ RUN apt-key add /root/nginx_signing.key \
 
 COPY nginx/nginx.conf /etc/nginx/
 
+COPY start_youpin_env /usr/local/bin/
+
+RUN chmod 755 /usr/local/bin/start_youpin_env
+
 EXPOSE 80 443
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["start_youpin_env"]
