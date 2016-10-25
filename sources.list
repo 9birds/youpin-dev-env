@@ -44,9 +44,9 @@ deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
 # deb http://archive.canonical.com/ubuntu xenial partner
 # deb-src http://archive.canonical.com/ubuntu xenial partner
 
-deb http://security.ubuntu.com/ubuntu xenial-security main restricted
-deb-src http://security.ubuntu.com/ubuntu xenial-security main restricted
-deb http://security.ubuntu.com/ubuntu xenial-security universe
-deb-src http://security.ubuntu.com/ubuntu xenial-security universe
-deb http://security.ubuntu.com/ubuntu xenial-security multiverse
-deb-src http://security.ubuntu.com/ubuntu xenial-security multiverse
+deb http://cn.archive.ubuntu.com/ubuntu/ xenial-security main restricted
+deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-security main restricted
+deb http://cn.archive.ubuntu.com/ubuntu/ xenial-security universe
+deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-security universe
+deb http://cn.archive.ubuntu.com/ubuntu/ xenial-security multiverse
+deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-security multiverse
