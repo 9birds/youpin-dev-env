@@ -16,7 +16,8 @@ COPY nginx/nginx.list /etc/apt/sources.list.d/nginx.list
 COPY nginx/nginx_signing.key /root/nginx_signing.key
 
 # Install packages
-RUN apt-get update \
+RUN apt-key add /root/nginx_signing.key \
+    && apt-get update \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y \
         python-software-properties \
@@ -28,24 +29,20 @@ RUN apt-get update \
         libsqlite3-0 \
         libxml2 \
         --no-install-recommends \
-    && apt-key add /root/nginx_signing.key \
-    && apt-get update \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y nginx \
-     && DEBIAN_FRONTEND="noninteractive" \
+        --no-install-recommends \
+    && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y php7.0-fpm \
         php7.0-cli \
-        php7.0-gd \ 
+        php7.0-gd \
         php7.0-curl \
         php7.0-mbstring \
-        php7.0-mysql \       
+        php7.0-mysql \
+        --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY nginx/nginx.conf /etc/nginx/
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
-
-
-
-
