@@ -36,7 +36,7 @@ RUN apt-key add /root/nginx_signing.key \
         php7.0-mbstring \
         php7.0-mysql \
         --no-install-recommends \
-    && mkdir /run/php
+    && mkdir /run/php \
     && rm -rf /var/lib/apt/lists/*
 
 COPY nginx/nginx.conf /etc/nginx/
