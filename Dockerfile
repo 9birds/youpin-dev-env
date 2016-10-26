@@ -32,12 +32,11 @@ RUN apt-key add /root/nginx_signing.key \
         --no-install-recommends \
     && DEBIAN_FRONTEND="noninteractive" \
         apt-get install -y php7.0-fpm \
-        php7.0-cli \
         php7.0-gd \
-        php7.0-curl \
         php7.0-mbstring \
         php7.0-mysql \
         --no-install-recommends \
+    && mkdir /run/php
     && rm -rf /var/lib/apt/lists/*
 
 COPY nginx/nginx.conf /etc/nginx/
